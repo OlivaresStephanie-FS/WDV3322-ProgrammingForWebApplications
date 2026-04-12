@@ -1,5 +1,3 @@
-# WDV3322-ProgrammingForWebApplications# WDV3322 – Programming for Web Applications
-
 The focus of this course includes:
 
 - Modern JavaScript (ES6+)

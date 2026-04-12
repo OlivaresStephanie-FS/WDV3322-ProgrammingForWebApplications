@@ -1,4 +1,4 @@
-# WDV3322-ProgrammingForWebApplications# WDV3322 – Programming for Web Applications
+# WDV3322-ProgrammingForWebApplications
 
 The focus of this course includes:
 

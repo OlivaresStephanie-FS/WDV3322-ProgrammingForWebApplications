@@ -1,4 +1,4 @@
-// Imports your SCSS stylesheet so styles are bundled by Webpack
+// Import SCSS stylesheet so styles are bundled by Webpack
 import './styles/index.scss';
 
 // Imports the car dataset (JSON file) so we can work with the data

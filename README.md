@@ -12,16 +12,18 @@ The focus of this course includes:
 
 ## Project Structure
 
+```
 20-ProgrammingForWebApplications/
 │
 ├── week_1/
-│ ├── assignment/
-│ │ └── car-finder/
-│ └── notes/
+│   ├── assignment/
+│   │   └── car-finder/
+│   └── notes/
 │
 ├── week_2/
 ├── week_3/
 └── ...
+```
 
 ---
 

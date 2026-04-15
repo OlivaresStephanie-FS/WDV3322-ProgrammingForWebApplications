@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Card Match</title>
+	</head>
+	<body>
+		<main class="game">
+			<section class="game__header">
+				<div class="game__intro">
+					<h1>Card Match</h1>
+					<p>
+						Use the three attempts you have to try to find the three
+						matching pairs of cards.
+					</p>
+				</div>
+
+				<div class="game__attempts">
+					<h2>Attempts left: <span id="attempts-count">3</span></h2>
+				</div>
+			</section>
+
+			<section id="game-board" class="game__board"></section>
+
+			<section class="game__footer">
+				<h2 id="game-message" class="game__message"></h2>
+				<button id="restart-btn" class="game__button" type="button">
+					Start Over!
+				</button>
+			</section>
+		</main>
+		<footer class="site-footer">
+			<p>© 2026 SOLINYC LLC • Card Match Game • Built with TypeScript & SCSS</p>
+		</footer>
+	</body>
+</html>

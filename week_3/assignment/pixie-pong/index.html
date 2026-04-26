@@ -22,14 +22,14 @@
 				height: 800,
 			});
 
-			document.getElementById("game").appendChild(app.canvas);
+			document.getElementById("game").appendChild(app.canvas); // Add the canvas to the DOM
 
 			const screenWidth = 800;
 			const screenHeight = 800;
 			const borderThickness = 10;
 			const circleRadius = 10;
 
-			const circle = new PIXI.Graphics();
+			const circle = new PIXI.Graphics(); // Create a new Graphics object for the circle
 			circle.beginFill("#ff0000");
 			circle.drawCircle(0, 0, circleRadius);
 			circle.endFill();
@@ -37,12 +37,12 @@
 			circle.x = screenWidth / 2;
 			circle.y = screenHeight / 2;
 
-			app.stage.addChild(circle);
+			app.stage.addChild(circle); // Add the circle to the stage
 
-			let velocityX = Math.random() > 0.5 ? 3 : -3;
-			let velocityY = Math.random() > 0.5 ? 2 : -2;
+			let velocityX = Math.random() > 0.5 ? 3 : -3; // Random initial horizontal velocity
+			let velocityY = Math.random() > 0.5 ? 2 : -2; // Random initial vertical velocity
 
-			function createBorder(x, y, width, height, color) {
+			function createBorder(x, y, width, height, color) { // Helper function to create borders
 				const border = new PIXI.Graphics();
 				border.beginFill(color);
 				border.drawRect(x, y, width, height);
@@ -85,14 +85,14 @@
 
 			const hitBorders = new Set();
 
-			function changeBorderColor(border, x, y, width, height) {
+			function changeBorderColor(border, x, y, width, height) { // Helper function to change border color on hit
 				border.clear();
 				border.beginFill(0xff0000); // Change to yellow on hit
 				border.drawRect(x, y, width, height);
 				border.endFill();
 			}
 
-			const gameComplete = new Promise((resolve) => {
+			const gameComplete = new Promise((resolve) => { // Create a promise that resolves when all borders have been hit
 				app.ticker.add(() => { // Move the circle
 					circle.x += velocityX;
 					circle.y += velocityY;
@@ -160,16 +160,16 @@
 						);
 					}
 
-					if (hitBorders.size === 4) {
+					if (hitBorders.size === 4) { // If all borders have been hit, resolve the promise
 						resolve();
 					}
 				});
 			});
 
-			gameComplete.then(() => {
+			gameComplete.then(() => { // When the game is complete, stop the ticker and show an alert
 				app.ticker.stop();
 				alert(
-					"Application complete! The circle has hit all four borders.",
+					"The circle has hit all four borders!",
 				);
 			});
 		</script>

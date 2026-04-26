@@ -201,6 +201,6 @@ The application tracks each border collision and uses a Promise to determine whe
 
 ## Author
 
-- Stephanie Olivares
-- WDV3322 – Programming for Web Applications
-- SOLINYC LLC
+Stephanie Olivares
+WDV3322 – Programming for Web Applications
+SOLINYC LLC

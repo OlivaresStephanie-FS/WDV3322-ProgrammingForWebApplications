@@ -150,7 +150,7 @@ http://localhost:9000
 
 ---
 
-## Week 4 – PixiJS Application
+## Week 3 – PixiJS Application
 
 ### Overview
 

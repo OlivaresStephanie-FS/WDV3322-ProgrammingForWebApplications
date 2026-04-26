@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Module 3 | Visual Libraries | PixiJS</title>
+	</head>
+
+	<body>
+		<game id="game"></game>
+
+		<!-- Load in the PixiJS -->
+		<script src="https://pixijs.download/release/pixi.min.js"></script>
+
+		<!-- Our ES6 code goes here as a type="module" -->
+		<script type="module">
+			const app = new PIXI.Application();
+
+			await app.init({
+				backgroundColor: "#155EAD",
+				width: 800,
+				height: 800,
+			});
+
+			document.getElementById("game").appendChild(app.canvas);
+
+			const screenWidth = 800;
+			const screenHeight = 800;
+			const borderThickness = 10;
+			const circleRadius = 10;
+
+			const circle = new PIXI.Graphics();
+			circle.beginFill("#ff0000");
+			circle.drawCircle(0, 0, circleRadius);
+			circle.endFill();
+
+			circle.x = screenWidth / 2;
+			circle.y = screenHeight / 2;
+
+			app.stage.addChild(circle);
+
+			let velocityX = Math.random() > 0.5 ? 3 : -3;
+			let velocityY = Math.random() > 0.5 ? 2 : -2;
+
+			function createBorder(x, y, width, height, color) {
+				const border = new PIXI.Graphics();
+				border.beginFill(color);
+				border.drawRect(x, y, width, height);
+				border.endFill();
+				app.stage.addChild(border);
+				return border;
+			}
+
+			const topBorder = createBorder(
+				0,
+				0,
+				screenWidth,
+				borderThickness,
+				0x000000,
+			);
+
+			const bottomBorder = createBorder(
+				0,
+				screenHeight - borderThickness,
+				screenWidth,
+				borderThickness,
+				0x000000,
+			);
+
+			const leftBorder = createBorder(
+				0,
+				0,
+				borderThickness,
+				screenHeight,
+				0x000000,
+			);
+
+			const rightBorder = createBorder(
+				screenWidth - borderThickness,
+				0,
+				borderThickness,
+				screenHeight,
+				0x000000,
+			);
+
+			const hitBorders = new Set();
+
+			function changeBorderColor(border, x, y, width, height) {
+				border.clear();
+				border.beginFill(0xff0000); // Change to yellow on hit
+				border.drawRect(x, y, width, height);
+				border.endFill();
+			}
+
+			const gameComplete = new Promise((resolve) => {
+				app.ticker.add(() => { // Move the circle
+					circle.x += velocityX;
+					circle.y += velocityY;
+
+					// Right border collision
+					if (
+						circle.x + circleRadius >=
+						screenWidth - borderThickness
+					) {
+						circle.x = screenWidth - borderThickness - circleRadius;
+						velocityX *= -1;
+						hitBorders.add("right");
+						changeBorderColor(
+							rightBorder,
+							screenWidth - borderThickness,
+							0,
+							borderThickness,
+							screenHeight,
+						);
+					}
+
+					// Left border collision
+					if (circle.x - circleRadius <= borderThickness) {
+						circle.x = borderThickness + circleRadius;
+						velocityX *= -1;
+						hitBorders.add("left");
+						changeBorderColor(
+							leftBorder,
+							0,
+							0,
+							borderThickness,
+							screenHeight,
+						);
+					}
+
+					// Bottom border collision
+					if (
+						circle.y + circleRadius >=
+						screenHeight - borderThickness
+					) {
+						circle.y =
+							screenHeight - borderThickness - circleRadius;
+						velocityY *= -1;
+						hitBorders.add("bottom");
+						changeBorderColor(
+							bottomBorder,
+							0,
+							screenHeight - borderThickness,
+							screenWidth,
+							borderThickness,
+						);
+					}
+
+					// Top border collision
+					if (circle.y - circleRadius <= borderThickness) {
+						circle.y = borderThickness + circleRadius;
+						velocityY *= -1;
+						hitBorders.add("top");
+						changeBorderColor(
+							topBorder,
+							0,
+							0,
+							screenWidth,
+							borderThickness,
+						);
+					}
+
+					if (hitBorders.size === 4) {
+						resolve();
+					}
+				});
+			});
+
+			gameComplete.then(() => {
+				app.ticker.stop();
+				alert(
+					"Application complete! The circle has hit all four borders.",
+				);
+			});
+		</script>
+	</body>
+</html>

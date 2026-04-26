@@ -13,22 +13,24 @@ The focus of this course includes:
 
 ## Project Structure
 
+```text
 20-ProgrammingForWebApplications/
 ├── week_1/
-│ ├── assignment/
-│ │ └── car-finder/
-│ └── notes/
+│   ├── assignment/
+│   │   └── car-finder/
+│   └── notes/
 ├── week_2/
-│ ├── assignment/
-│ │ └── card-match/
-│ └── notes/
+│   ├── assignment/
+│   │   └── card-match/
+│   └── notes/
 ├── week_3/
-│ └── notes/
+│   ├── notes/
+│   └── pixie-pong/
+│       └── index.html
 ├── week_4/
-│ ├── pixijs-project/
-│ │ └── index.html
-│ └── notes/
+│   └── notes/
 └── README.md
+```
 
 ---
 
